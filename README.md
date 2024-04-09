@@ -1,8 +1,18 @@
-# React + Vite
+# React + Vite Music Podcast
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project, made with [Vite](https://vitejs.dev/) as build tool, uses react to create a music podcast. 
 
-Currently, two official plugins are available:
+## Installation
+To install de project, run npm i in the root directory.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm install 
+```
+
+## Usage
+To run the application, just run:
+
+```bash
+npm run dev 
+```
+

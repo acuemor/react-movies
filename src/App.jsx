@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import { mockedItems } from './mocks.js';
 
 
 export function filterItems(items, query) {
@@ -40,21 +41,7 @@ export function ProductList({ items }) {
 function FilterableList() {
   const [query, setQuery] = useState('');
 
-  const items = [{
-    id: 0,
-    name: 'How to start a podcast',
-    description: 'Discovering your true passion is an'
-  }, {
-    id: 1,
-    name: 'The beatles',
-    description: 'Podcast about the beatles.'
-  }, {
-    id: 2,
-    name: 'Queen',
-    description: 'Podcast about queen'
-  }];
-
-  const filteredItems = filterItems(items, query)
+  const filteredItems = filterItems(mockedItems, query)
 
 
   return (

@@ -6,16 +6,32 @@ function ProductCategoryRow({ categories }) {
 			<tr>
 				{categories.map(category => <th key={category.id}>{category.name}</th>)}
 			</tr>
+			<tr>
+				<td colSpan={categories.length}><hr /></td>
+			</tr>
 		</thead>
 	);
 }
 
 function ProductRow({ product }) {
 	return (
+		<>
+			<tr>
+				<td>{product.artistName}</td>
+				<td>{product.collectionName}</td>
+				<td>{new Date(product.releaseDate).toLocaleDateString('en-GB')}</td>
+			</tr>
+			<tr>
+				<td colSpan="3"><hr /></td>
+			</tr>
+		</>
+	);
+}
+
+function NoResults() {
+	return (
 		<tr>
-			<td>{product.artistName}</td>
-			<td>{product.collectionName}</td>
-			<td>{product.releaseDate}</td>
+			<td colSpan="3">No results found</td>
 		</tr>
 	);
 }
@@ -35,7 +51,10 @@ export default function ProductList({ products, filterText }) {
 
 	return (
 		<table>
-			<ProductCategoryRow categories={PODCAST_SEARCH_CATEGORY_ROWS} />
+			{filteredProducts.length ?
+				<ProductCategoryRow categories={PODCAST_SEARCH_CATEGORY_ROWS} /> :
+				<tbody><NoResults /></tbody>
+			}
 			<tbody>{filteredProducts}</tbody>
 		</table>
 	);

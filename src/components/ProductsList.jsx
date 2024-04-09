@@ -3,9 +3,9 @@ export default function ProductList({ items }) {
 		<table>
 			<tbody>
 				{items.map(podcast => (
-					<tr key={podcast.id}>
-						<td>{podcast.name}</td>
-						<td>{podcast.description}</td>
+					<tr key={podcast.trackId}>
+						<td>{podcast.artistName}</td>
+						<td>{podcast.collectionName}</td>
 					</tr>
 				))}
 			</tbody>

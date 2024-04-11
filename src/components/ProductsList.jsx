@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import { PODCAST_SEARCH_CATEGORY_ROWS } from '../mocks.js';
 
@@ -28,7 +29,6 @@ function formatDate(dateString) {
 	}
 }
 
-
 function ProductCategoryRow({ className, categories }) {
 	return (
 		<thead className={`${className}`}>
@@ -43,9 +43,15 @@ function ProductCategoryRow({ className, categories }) {
 }
 
 function ProductRow({ product }) {
+	const navigate = useNavigate();
+
+	function handleClick(product) {
+		navigate(`/detail/${product.trackId}`, { state: { product } }); //TODO send product as param to product detail
+	}
+
 	return (
 		<>
-			<tr>
+			<tr onClick={() => handleClick(product)}>
 				<td>{product.artistName}</td>
 				<td>{product.collectionName}</td>
 				<td>{formatDate(product.releaseDate)}</td>

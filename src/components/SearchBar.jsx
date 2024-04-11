@@ -1,11 +1,12 @@
-import { SearchBarStyled, SearchBarIconStyled, SearchBarContainerStyled } from '../styles/SearchBarStyled.js';
+import styled from "styled-components";
 
-export default function SearchBar({ query, onType }) {
+function SearchBar({ className, query, onType }) {
 
 	return (
-		<>
-			<SearchBarContainerStyled>
-				<SearchBarIconStyled
+		<div className={`${className}`}>
+			<div className='container'>
+				<svg
+					className='glass'
 					viewBox="0 0 20 20"
 					xmlns="http://www.w3.org/2000/svg"
 					aria-hidden="true"
@@ -18,14 +19,40 @@ export default function SearchBar({ query, onType }) {
 							<rect width="20" height="20" fill="white" />
 						</clipPath>
 					</defs>
-				</SearchBarIconStyled>
-				<SearchBarStyled
+				</svg>
+				<input
+					className='searchbar'
 					placeholder='podcast'
 					value={query}
 					onChange={onType}
-				></SearchBarStyled>
-			</SearchBarContainerStyled>
-		</>
+				></input>
+			</div>
+		</div >
 
 	);
 }
+
+export default styled(SearchBar)`
+		div.container {
+			position: relative;
+  			margin-bottom: 60px;
+		}
+
+		.searchbar {
+			padding: 0px 5px 0px 40px;
+			width: calc(100% - 40px);
+			height: 50px;
+			border: 0;
+			font-size: 16px;
+		}
+
+		.glass {
+			position: absolute;
+			top: 50%;
+			left: 10px;
+			transform: translateY(-50%);
+			width: 20px; 
+			height: 20px;
+			fill: white;
+		}
+	`;

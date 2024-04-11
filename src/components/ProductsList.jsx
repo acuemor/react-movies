@@ -1,6 +1,6 @@
+import styled from "styled-components";
+
 import { PODCAST_SEARCH_CATEGORY_ROWS } from '../mocks.js';
-import { NoResultsStyled } from '../styles/NoResults.js';
-import { ProductCategoryRowStyled } from '../styles/ProductCategoryRowStyled.js';
 
 function formatDate(dateString) {
 	const date = new Date(dateString);
@@ -29,12 +29,12 @@ function formatDate(dateString) {
 }
 
 
-function ProductCategoryRow({ categories }) {
+function ProductCategoryRow({ className, categories }) {
 	return (
-		<thead>
-			<ProductCategoryRowStyled>
+		<thead className={`${className}`}>
+			<tr className="category">
 				{categories.map(category => <th key={category.id}>{category.name}</th>)}
-			</ProductCategoryRowStyled>
+			</tr>
 			<tr>
 				<td colSpan={categories.length}><hr /></td>
 			</tr>
@@ -57,10 +57,10 @@ function ProductRow({ product }) {
 	);
 }
 
-function NoResults() {
+function NoResults({ className }) {
 	return (
-		<tr>
-			<NoResultsStyled>No results found</NoResultsStyled>
+		<tr className={`${className}`}>
+			<td>No results found</td>
 		</tr>
 	);
 }
@@ -81,10 +81,23 @@ export default function ProductList({ products, filterText }) {
 	return (
 		<table style={{ borderSpacing: '10px' }}>
 			{filteredProducts.length ?
-				<ProductCategoryRow categories={PODCAST_SEARCH_CATEGORY_ROWS} /> :
-				<tbody><NoResults /></tbody>
+				<ProductCategoryRowStyled categories={PODCAST_SEARCH_CATEGORY_ROWS} /> :
+				<tbody><NoResultsStyled /></tbody>
 			}
 			<tbody>{filteredProducts}</tbody>
 		</table>
 	);
 }
+
+export const ProductCategoryRowStyled = styled(ProductCategoryRow)`
+	.category {
+		opacity: 0.3;
+	}
+`
+export const NoResultsStyled = styled(NoResults)`
+	td {
+		font-size: 24px;
+		opacity: 0.3;
+		padding: 0 20px;
+	}
+`

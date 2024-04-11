@@ -1,6 +1,13 @@
 import styled from "styled-components";
+import { useNavigate } from 'react-router-dom';
 
 function SearchBar({ className, query, onType, showBackButton }) {
+	const navigate = useNavigate();
+
+	function handleGoBack() {
+		navigate(-1); // Go back in history navigation
+	}
+
 	function getBackIcon() {
 		return (
 			<svg width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,7 +39,7 @@ function SearchBar({ className, query, onType, showBackButton }) {
 	return (
 		<div className={`${className}`}>
 			<div className='container'>
-				{showBackButton && <div className="back-icon">{getBackIcon()}</div>}
+				{showBackButton && <div className="back-icon" onClick={handleGoBack}>{getBackIcon()}</div>}
 				<div className='search-container'>
 					{getGlassIcon()}
 					<input

@@ -1,16 +1,36 @@
-import { useState } from 'react'
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 import './App.css'
-import { mockedPodcasts } from './mocks.js';
-import SearchBar from './components/SearchBar.jsx';
-import ProductList from './components/ProductsList.jsx';
+import PodcastSearchRoute from './components/routes/PodcastSearchRoute.jsx';
+import PodcastDetailRoute from './components/routes/PodcastDetailRoute.jsx';
+import ErrorPage from './components/errorPage.jsx';
 
-export default function FilterableList() {
-  const [query, setQuery] = useState('');
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <PodcastSearchRoute />,
+    errorElement: <ErrorPage />,
+    // children: [
+    //   {
+    //     path: "contacts/:contactId",
+    //     element: <Contact />,
+    //   },
+    // ],
+  },
+  {
+    path: "detail/:podcastId",
+    element: <PodcastDetailRoute />,
+    errorElement: <ErrorPage />,
+  },
+]);
+
+
+export default function Podcast() {
 
   return (
-    <>
-      <SearchBar query={query} onType={(e) => setQuery(e.target.value)} />
-      <ProductList products={mockedPodcasts} filterText={query} />
-    </>
+    <RouterProvider router={router} />
   );
 }

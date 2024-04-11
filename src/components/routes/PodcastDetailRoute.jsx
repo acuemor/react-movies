@@ -12,7 +12,7 @@ export default function PodcastDetailRoute() {
 
 	return (
 		<>
-			<SearchBar query={query} onType={(e) => setQuery(e.target.value)} />
+			<SearchBar query={query} onType={(e) => setQuery(e.target.value)} showBackButton={true} />
 			<ProductDetail product={productState} />
 			<ProductList products={mockedPodcasts} filterText={query} />
 		</>

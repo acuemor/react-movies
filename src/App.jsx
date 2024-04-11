@@ -3,11 +3,11 @@ import {
   RouterProvider,
   Navigate
 } from "react-router-dom";
-import './App.css'
 import PodcastSearchRoute from './routes/PodcastSearchRoute.jsx';
 import PodcastDetailRoute from './routes/PodcastDetailRoute.jsx';
 import HomeRoute from "./routes/HomeRoute.jsx";
 import ErrorPage from './components/errorPage.jsx';
+import { GlobalStyles } from "./styles/GlobalStyles.js";
 
 
 const router = createBrowserRouter([
@@ -35,6 +35,9 @@ const router = createBrowserRouter([
 export default function Podcast() {
 
   return (
-    <RouterProvider router={router} />
+    <>
+      <GlobalStyles />
+      <RouterProvider router={router} />
+    </>
   );
 }

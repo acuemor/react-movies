@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useLocation } from 'react-router-dom';
-import SearchBar from '../SearchBar.jsx';
-import ProductList from '../ProductsList.jsx';
-import { mockedPodcasts } from '../../mocks.js';
-import ProductDetail from '../ProductDetail.jsx';
+import SearchBar from '../components/SearchBar.jsx';
+import ProductList from '../components/ProductsList.jsx';
+import { mockedPodcasts } from '../mocks.js';
+import ProductDetail from '../components/ProductDetail.jsx';
 
 export default function PodcastDetailRoute() {
 	const [query, setQuery] = useState('');

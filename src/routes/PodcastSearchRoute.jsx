@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import SearchBar from '../SearchBar.jsx';
-import ProductList from '../ProductsList.jsx';
-import { mockedPodcasts } from '../../mocks.js';
+import SearchBar from '../components/SearchBar.jsx';
+import ProductList from '../components/ProductsList.jsx';
+import { mockedPodcasts } from '../mocks.js';
 
 export default function PodcastSearchRoute() {
 	const [query, setQuery] = useState('');

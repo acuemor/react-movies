@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useNavigate } from 'react-router-dom';
 
-function SearchBar({ className, query, onType, showBackButton }) {
+function SearchBar({ className, query, onType, showBackButton, onRequestPodcasts }) {
 	const navigate = useNavigate();
 
 	function handleGoBack() {
@@ -27,6 +27,7 @@ function SearchBar({ className, query, onType, showBackButton }) {
 						placeholder='podcast'
 						value={query}
 						onChange={onType}
+						onKeyDown={(ev) => ev.key === 'Enter' && onRequestPodcasts()}
 					></input>
 				</div>
 			</div>

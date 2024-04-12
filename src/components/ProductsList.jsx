@@ -1,33 +1,7 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-
+import { formatDate } from "../utils.js";
 import { PODCAST_SEARCH_CATEGORY_ROWS } from '../mocks.js';
-
-function formatDate(dateString) {
-	const date = new Date(dateString);
-	const now = new Date();
-
-	// Difference in ms
-	const diffInMilliseconds = now - date;
-	const diffInHours = Math.floor(diffInMilliseconds / (1000 * 60 * 60));
-	const diffInDays = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
-
-	if (date.getFullYear() !== now.getFullYear()) {
-		// Different year
-		return date.toLocaleDateString('en-GB');
-	} else if (diffInDays < 7) {
-		// Less than 1 week
-		const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-		const dayOfWeek = days[date.getDay()];
-		return `Last ${dayOfWeek}`;
-	} else if (diffInHours < 24) {
-		// Less than 24 hours
-		return `${diffInHours} hours ago`;
-	} else {
-		// Current year
-		return date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
-	}
-}
 
 function ProductCategoryRow({ className, categories }) {
 	return (
@@ -71,26 +45,20 @@ function NoResults({ className }) {
 	);
 }
 
-export default function ProductList({ products, filterText }) {
-	const filteredProducts = products.reduce((accumulator, product) => {
-		if (product.collectionName.toLowerCase().includes(filterText.toLowerCase())) {
-			accumulator.push(
-				<ProductRow
-					product={product}
-					key={product.trackId}
-				/>
-			);
-		}
-		return accumulator;
-	}, []);
+export default function ProductList({ products }) {
 
 	return (
 		<table style={{ borderSpacing: '10px' }}>
-			{filteredProducts.length ?
+			{products.length ?
 				<ProductCategoryRowStyled categories={PODCAST_SEARCH_CATEGORY_ROWS} /> :
 				<tbody><NoResultsStyled /></tbody>
 			}
-			<tbody>{filteredProducts}</tbody>
+			<tbody>{products.map(product =>
+				<ProductRow
+					product={product}
+					key={product.trackId}
+				/>)}
+			</tbody>
 		</table>
 	);
 }
